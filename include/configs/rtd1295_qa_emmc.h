@@ -24,9 +24,9 @@
 //#define CONFIG_BOARD_FPGA_RTD1295_EMMC
 
 
-/* Flash type is SPI or NAND or eMMC*/
-//#define CONFIG_SYS_RTK_SPI_FLASH
-//#define CONFIG_SYS_RTK_NAND_FLASH
+/* Flash type is SPI or NAND or eMMC
+#define CONFIG_SYS_RTK_SPI_FLASH
+#define CONFIG_SYS_RTK_NAND_FLASH*/
 #define CONFIG_SYS_RTK_EMMC_FLASH
 
 
@@ -132,7 +132,7 @@
  * is mapped to one contiguous block
  */
 #if 1
-// undefine existed configs to prevent compile warning
+/* undefine existed configs to prevent compile warning*/
 #undef CONFIG_NR_DRAM_BANKS
 #undef CONFIG_SYS_SDRAM_BASE
 #undef CONFIG_SYS_RAM_DCU1_SIZE
@@ -142,7 +142,7 @@
 #define MIPS_RESETROM_SIZE              (0x1000UL)
 #define CONFIG_NR_DRAM_BANKS		1
 #define CONFIG_SYS_SDRAM_BASE		0
-#define CONFIG_SYS_RAM_DCU1_SIZE	 0x40000000	//FIXME
+#define CONFIG_SYS_RAM_DCU1_SIZE	 0x40000000	/*FIXME*/
 
 #endif
 
@@ -158,7 +158,7 @@
 //#define CONFIG_PRELOAD_DTB_EMMC_ADDR		0x02438200
 
 #undef V_NS16550_CLK
-#define	V_NS16550_CLK				27000000 //(for ASIC 27MHz)
+#define	V_NS16550_CLK				27000000 /*(for ASIC 27MHz)*/
 
 /* Bootcode Feature: Rescue linux read from USB */
 #define CONFIG_RESCUE_FROM_USB
