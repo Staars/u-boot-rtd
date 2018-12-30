@@ -79,7 +79,7 @@
 #include <config_cmd_default.h>
 
 /* Disabled commands */
-//#undef CONFIG_CMD_NET
+/*#undef CONFIG_CMD_NET*/
 #undef CONFIG_CMD_NFS
 #undef CONFIG_CMD_FPGA		/* FPGA configuration Support   */
 #undef CONFIG_CMD_IMLS		/* List all found images        */
@@ -104,7 +104,7 @@
 #undef CONFIG_CMD_LOADS
 #undef CONFIG_CMD_VERSION
 #undef CONFIG_CMD_EXIT
-//#undef CONFIG_CMD_BDI
+/*#undef CONFIG_CMD_BDI*/
 #undef CONFIG_CMD_CONSOLE
 #undef CONFIG_CMD_SHOWVAR
 #undef CONFIG_CMD_MM
@@ -142,12 +142,12 @@
    "mtd_part=mtdparts=rtk_nand:\0"                  \
 
 /* Pass open firmware flat tree */
-//#define CONFIG_FIT 					1
-//#define CONFIG_OF_LIBFDT    		1
-//#define CONFIG_OF_BOARD_SETUP		1
+/*#define CONFIG_FIT */					1
+/*#define CONFIG_OF_LIBFDT  */  		1
+/*#define CONFIG_OF_BOARD_SETUP	*/	1
 #define CONFIG_OF_STDOUT_VIA_ALIAS	1
-//#define CONFIG_SYS_BOOTMAPSZ   	0x10000000       /* Initial Memory map for Linux */
-//#define CONFIG_LMB 				1
+/*#define CONFIG_SYS_BOOTMAPSZ */  	0x10000000       /* Initial Memory map for Linux */
+/*#define CONFIG_LMB */				1
 
 
 /* Console */
@@ -188,7 +188,7 @@
  *
  * The stack sizes are set up in start.S using the settings below
  */
-//stack size is setup in linker script 1MB
+/*stack size is setup in linker script 1MB*/
 #ifdef CONFIG_USE_IRQ
 	#define CONFIG_STACKSIZE_IRQ	(4 << 10)	/* IRQ stack */
 	#define CONFIG_STACKSIZE_FIQ	(4 << 10)	/* FIQ stack */
@@ -205,11 +205,11 @@
 
 
 #define CONFIG_NO_RELOCATION
-//if the relocation is enabled, the address is used to be the stack at very beginning.
+/*if the relocation is enabled, the address is used to be the stack at very beginning.*/
 #define CONFIG_SYS_INIT_SP_ADDR     0x00100000
 
 
-#if 0 // 1:cache disable   0:enable
+#if 0 /* 1:cache disable   0:enable */
 	#define CONFIG_SYS_ICACHE_OFF
 	#define CONFIG_SYS_DCACHE_OFF
 #else
@@ -235,8 +235,8 @@
 #define CONFIG_SYS_PROMPT       		"Realtek> "
 
 /* Library support */
-//#define CONFIG_LZMA
-//#define CONFIG_LZO
+/*#define CONFIG_LZMA
+  #define CONFIG_LZO */
 
 #ifdef CONFIG_CMD_NET
 	/* Eth Net */
@@ -254,7 +254,7 @@
 #endif
 
 /* USB Setting */
-//#define CONFIG_CMD_FAT
+/*/#define CONFIG_CMD_FAT
 //#define CONFIG_PARTITIONS
 //#define CONFIG_DOS_PARTITION
 //#define CONFIG_EFI_PARTITION
@@ -263,30 +263,30 @@
 //#define CONFIG_USB_EHCI
 //#define CONFIG_USB_EHCI_RTK
 //#define CONFIG_USB_XHCI
-//#define CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS 5
+//#define CONFIG_SYS_USB_XHCI_MAX_ROOT_PORTS 5 */
 
 #define CONFIG_USB_MAX_CONTROLLER_COUNT 4
 
-/* PCB Manager */
-//#define CONFIG_SYS_PCB_MANAGER
+/* PCB Manager
+//#define CONFIG_SYS_PCB_MANAGER */
 
-/* Factory */
+/* Factory 
 //#define CONFIG_SYS_FACTORY
-//#define PANEL_CONFIG_FROM_FACTORY_PANEL_BIN
+//#define PANEL_CONFIG_FROM_FACTORY_PANEL_BIN*/
 
-/* Factory Read-only : depend on customer */
-//#define CONFIG_SYS_FACTORY_READ_ONLY
+/* Factory Read-only : depend on customer 
+//#define CONFIG_SYS_FACTORY_READ_ONLY*/
 
-/* Panel Parameter */
+/* Panel Parameter 
 //#define CONFIG_SYS_PANEL_SUPPORT
 //#define CONFIG_SYS_PANEL_PARAMETER
-//#define CONFIG_CMD_PANEL
+//#define CONFIG_CMD_PANEL*/
 
-/* TCON settting from factory */
-//#define CONFIG_PANEL_APPLY_TCON_SETTING
+/* TCON settting from factory 
+//#define CONFIG_PANEL_APPLY_TCON_SETTING*/
 
-/* Pin Mux */
-//#define CONFIG_SYS_PIN_MUX
+/* Pin Mux 
+#define CONFIG_SYS_PIN_MUX */
 
 /* GPIO */
 #define CONFIG_REALTEK_GPIO
@@ -297,17 +297,17 @@
 #define CONFIG_I2C_MULTI_BUS
 #define CONFIG_REALTEK_I2C
 
-/* PWM */
-//#define CONFIG_REALTEK_PWM
+/* PWM 
+//#define CONFIG_REALTEK_PWM*/
 
-/* LSADC */
-//#define CONFIG_REALTEK_LSADC
+/* LSADC 
+//#define CONFIG_REALTEK_LSADC*/
 
-/* MISC Wakeup */
-//#define CONFIG_MISC_MGR_WAKEUP
+/* MISC Wakeup 
+//#define CONFIG_MISC_MGR_WAKEUP*/
 
 /* Logo Display */
-//#define CONFIG_SYS_LOGO_DISP
+/*#define CONFIG_SYS_LOGO_DISP*/
 #ifdef CONFIG_SYS_LOGO_DISP
 	//#define CONFIG_SYS_LOGO_DISP_NTSC
 	//#define CONFIG_SYS_LOGO_DISP_PAL
@@ -316,7 +316,7 @@
 #endif
 
 /* IR driver */
-//#define CONFIG_SYS_IR_SUPPORT
+/*#define CONFIG_SYS_IR_SUPPORT*/
 #ifdef CONFIG_SYS_IR_SUPPORT
 	//#define CONFIG_IR_NEC_PROTOCOL
 	//#define CONFIG_IR_DELAY 110
@@ -327,13 +327,13 @@
 #endif
 
 /* Auto detect sink*/
-//#define CONFIG_SYS_AUTO_DETECT
+/*#define CONFIG_SYS_AUTO_DETECT
 //#define CONFIG_DEFAULT_TV_SYSTEM    	30 //1080P_59
-//#define CONFIG_DEFAULT_MHL_TV_SYSTEM    27 //1080I_59
+//#define CONFIG_DEFAULT_MHL_TV_SYSTEM    27 //1080I_59*/
 
 /*Power Saving*/
 #define CONFIG_MISC_INIT_R
-//#define CONFIG_RTK_POWER
+/*#define CONFIG_RTK_POWER*/
 
 
 #if 0
@@ -344,7 +344,7 @@
 #define CONFIG_USB_UPDATE_UBOOT_WHEN_AC_ON
 
 /* Bootcode Feature: Read rescue linux from install.img or flash */
-//#define CONFIG_USB_UPDATE_READ_RESCUE_FROM_FLASH
+/*#define CONFIG_USB_UPDATE_READ_RESCUE_FROM_FLASH*/
 #endif
 
 #if 0
@@ -367,15 +367,15 @@
 #define CONFIG_RUN_FLASH_WRITER
 #endif
 
-// Config panel name and compile options
+/* Config panel name and compile options*/
 #if (0)
-   // default 60Hz panel
+   /* default 60Hz panel*/
   /* LVDS panel setting */
   #define CONFIG_PANEL_NAME "asm/arch/panel/default_panel.h"
 #endif
 
 /* enable key burn fnction */
-//#define CONFIG_CMD_KEY_BURNING
+/*#define CONFIG_CMD_KEY_BURNING*/
 
 #define CONFIG_ENV_EXPORT_ADDR 0x10000000
 
