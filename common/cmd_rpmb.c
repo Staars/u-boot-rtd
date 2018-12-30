@@ -1078,7 +1078,7 @@ static void KEY_pad_to_64bytes(unsigned char * original_key,int original_len,uns
 }
 
 static int GET_KF_IN_OTP(unsigned char * kf){
-	OTP_Get_Byte(KF_OFFSET,kf,16);	
+	/* OTP_Get_Byte(KF_OFFSET,kf,16); */	
 	return 0;
 }
 
