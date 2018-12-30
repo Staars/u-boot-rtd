@@ -16,7 +16,7 @@
 
 
 
-//==========================================================
+/*========================================================== */
 	
 	/* Factory start address and size in eMMC */
 	#define CONFIG_FACTORY_START	0x220000	/* For eMMC */
@@ -42,7 +42,7 @@
 	#undef	CONFIG_ENV_IS_NOWHERE
 	#ifdef CONFIG_SYS_FACTORY
 		#define CONFIG_ENV_IS_IN_FACTORY
-		//#define CONFIG_SYS_FACTORY_READ_ONLY
+		/*#define CONFIG_SYS_FACTORY_READ_ONLY */
 	#endif
 	
 	
@@ -72,13 +72,13 @@
 #define ARM_ROMCODE_SIZE			(124*1024)
 #define CONFIG_NR_DRAM_BANKS		1
 #define CONFIG_SYS_SDRAM_BASE		0x0
-#define CONFIG_SYS_RAM_DCU1_SIZE	0x40000000	// FIXME
+#define CONFIG_SYS_RAM_DCU1_SIZE	0x40000000	/* FIXME */
 #define CONFIG_FT_RESCUE
 
 #undef  V_NS16550_CLK
-#define V_NS16550_CLK			27000000	//FIXME
+#define V_NS16550_CLK			27000000	/*FIXME */
 
-#define COUNTER_FREQUENCY               27000000 // FIXME, need to know what impact it will cause
+#define COUNTER_FREQUENCY               27000000 /* FIXME, need to know what impact it will cause */
 
 #define CONFIG_VERSION			"0000"
 
