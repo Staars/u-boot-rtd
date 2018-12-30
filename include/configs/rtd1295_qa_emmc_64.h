@@ -16,10 +16,11 @@
 
 
 
-//==========================================================
+/*==========================================================*/
+
 /* Flash type is SPI or NAND or eMMC*/
-//#define CONFIG_SYS_RTK_SPI_FLASH
-//#define CONFIG_SYS_RTK_NAND_FLASH
+/*#define CONFIG_SYS_RTK_SPI_FLASH
+//#define CONFIG_SYS_RTK_NAND_FLASH*/
 #define CONFIG_SYS_RTK_EMMC_FLASH
 
 #if defined(CONFIG_SYS_RTK_EMMC_FLASH)
