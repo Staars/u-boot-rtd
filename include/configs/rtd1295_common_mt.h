@@ -119,7 +119,7 @@
 #include <config_cmd_default.h>
 
 /* Disabled commands */
-//#undef CONFIG_CMD_NET
+/*#undef CONFIG_CMD_NET*/
 #undef CONFIG_CMD_NFS
 #undef CONFIG_CMD_FPGA		/* FPGA configuration Support   */
 #undef CONFIG_CMD_IMLS		/* List all found images        */
@@ -144,7 +144,7 @@
 #undef CONFIG_CMD_LOADS
 #undef CONFIG_CMD_VERSION
 #undef CONFIG_CMD_EXIT
-//#undef CONFIG_CMD_BDI
+/*#undef CONFIG_CMD_BDI*/
 #undef CONFIG_CMD_CONSOLE
 #undef CONFIG_CMD_SHOWVAR
 #undef CONFIG_CMD_MM
@@ -165,17 +165,17 @@
 
 #define CONFIG_BOOTARGS \
     "earlycon=uart8250,mmio32,0x98007800 console=ttyS0,115200 loglevel=4 cma=32m@576m noinitrd rootwait root=/dev/mmcblk0p1"
-	//"earlycon=uart8250,mmio32,0x98007800 console=ttyS0,115200 loglevel=4 cma=64m@576m,init=/init androidboot.hardware=kylin"
-
+	/*"earlycon=uart8250,mmio32,0x98007800 console=ttyS0,115200 loglevel=4 cma=64m@576m,init=/init androidboot.hardware=kylin"
+	*/
 #define CONFIG_BOOTCOMMAND \
 	"bootr"
 
 #define	CONFIG_CMD_BOOTM
 #define CONFIG_KERNEL_LOADADDR	0x03000000
 #define CONFIG_ROOTFS_LOADADDR 	0x02200000
-#define CONFIG_LOGO_LOADADDR 	0x02002000	//reserved ~2M
-#define CONFIG_FDT_LOADADDR		0x01F00000	//reserved ~1M
-#define CONFIG_FW_LOADADDR 		0x01b00000  //reserved 4M
+#define CONFIG_LOGO_LOADADDR 	0x02002000	/*reserved ~2M*/
+#define CONFIG_FDT_LOADADDR		0x01F00000	/*reserved ~1M*/
+#define CONFIG_FW_LOADADDR 		0x01b00000  /*reserved 4M*/
 
 #define CONFIG_EXTRA_ENV_SETTINGS                   \
    "bootcode2ndtmp_loadaddr=0x01500000\0"	\
@@ -224,7 +224,7 @@
 #define CONFIG_SYS_LOAD_ADDR		0x03000000
 
 /* Use General purpose timer 2 */
-#define CONFIG_SYS_TIMER		0     //FPGA
+#define CONFIG_SYS_TIMER		0     /*FPGA*/
 #define CONFIG_SYS_HZ			1000
 
 /*
@@ -232,7 +232,7 @@
  *
  * The stack sizes are set up in start.S using the settings below
  */
-//stack size is setup in linker script 1MB
+/*stack size is setup in linker script 1MB*/
 #ifdef CONFIG_USE_IRQ
 	#define CONFIG_STACKSIZE_IRQ	(4 << 10)	/* IRQ stack */
 	#define CONFIG_STACKSIZE_FIQ	(4 << 10)	/* FIQ stack */
@@ -245,15 +245,15 @@
  */
 #define CONFIG_NR_DRAM_BANKS		1
 #define CONFIG_SYS_SDRAM_BASE		0x00000000
-#define CONFIG_SYS_RAM_DCU1_SIZE	0x20000000		//512MB
+#define CONFIG_SYS_RAM_DCU1_SIZE	0x20000000		/*512MB*/
 
 
 #define CONFIG_NO_RELOCATION
-//if the relocation is enabled, the address is used to be the stack at very beginning.
+/*if the relocation is enabled, the address is used to be the stack at very beginning.*/
 #define CONFIG_SYS_INIT_SP_ADDR     0x00100000
 
 
-#if 0 // 1:cache disable   0:enable
+#if 0 /* 1:cache disable   0:enable */
 	#define CONFIG_SYS_ICACHE_OFF
 	#define CONFIG_SYS_DCACHE_OFF
 #else
@@ -300,7 +300,7 @@
 
 /* USB Setting */
 #define CONFIG_CMD_FAT
-//#define CONFIG_PARTITIONS
+/*#define CONFIG_PARTITIONS */
 #define CONFIG_DOS_PARTITION
 #define CONFIG_EFI_PARTITION
 #define CONFIG_CMD_USB
@@ -313,25 +313,25 @@
 #define CONFIG_USB_MAX_CONTROLLER_COUNT 4
 
 /* PCB Manager */
-//#define CONFIG_SYS_PCB_MANAGER
+/*#define CONFIG_SYS_PCB_MANAGER*/
 
 /* Factory */
 #define CONFIG_SYS_FACTORY
 #define PANEL_CONFIG_FROM_FACTORY_PANEL_BIN
 
 /* Factory Read-only : depend on customer */
-//#define CONFIG_SYS_FACTORY_READ_ONLY
+/*#define CONFIG_SYS_FACTORY_READ_ONLY*/
 
 /* Panel Parameter */
-//#define CONFIG_SYS_PANEL_SUPPORT
+/*#define CONFIG_SYS_PANEL_SUPPORT
 //#define CONFIG_SYS_PANEL_PARAMETER
-//#define CONFIG_CMD_PANEL
+//#define CONFIG_CMD_PANEL*/
 
 /* TCON settting from factory */
-//#define CONFIG_PANEL_APPLY_TCON_SETTING
+/*#define CONFIG_PANEL_APPLY_TCON_SETTING*/
 
 /* Pin Mux */
-//#define CONFIG_SYS_PIN_MUX
+/*#define CONFIG_SYS_PIN_MUX*/
 
 /* GPIO */
 #define CONFIG_REALTEK_GPIO
@@ -343,32 +343,32 @@
 #define CONFIG_REALTEK_I2C
 
 /* PWM */
-//#define CONFIG_REALTEK_PWM
+/*#define CONFIG_REALTEK_PWM*/
 
 /* LSADC */
-//#define CONFIG_REALTEK_LSADC
+/*#define CONFIG_REALTEK_LSADC*/
 
 /* MISC Wakeup */
-//#define CONFIG_MISC_MGR_WAKEUP
+/*#define CONFIG_MISC_MGR_WAKEUP*/
 
 /* Logo Display */
-//#define CONFIG_SYS_LOGO_DISP
+/*#define CONFIG_SYS_LOGO_DISP*/
 #ifdef CONFIG_SYS_LOGO_DISP
-	//#define CONFIG_SYS_LOGO_DISP_NTSC
+	/*#define CONFIG_SYS_LOGO_DISP_NTSC
 	//#define CONFIG_SYS_LOGO_DISP_PAL
 	//#define CONFIG_SYS_LOGO_DISP_1080P50
-	//#define CONFIG_SYS_LOGO_DISP_1080P60
+	//#define CONFIG_SYS_LOGO_DISP_1080P60*/
 #endif
 
 /* IR driver */
-//#define CONFIG_SYS_IR_SUPPORT
+/*#define CONFIG_SYS_IR_SUPPORT*/
 #ifdef CONFIG_SYS_IR_SUPPORT
-	//#define CONFIG_IR_NEC_PROTOCOL
+	/*#define CONFIG_IR_NEC_PROTOCOL
 	//#define CONFIG_IR_DELAY 110
 	//#define CONFIG_IR_SONY_PROTOCOL
 	//#define CONFIG_IR_RC5_PROTOCOL
 	//#define CONFIG_IR_RC6_PROTOCOL
-	//#define CONFIG_IR_KK_Y261_PROTOCOL
+	//#define CONFIG_IR_KK_Y261_PROTOCOL*/
 #endif
 
 /* Auto detect sink*/
@@ -414,13 +414,13 @@
 
 // Config panel name and compile options
 #if (0)
-   // default 60Hz panel
+   /* default 60Hz panel*/
   /* LVDS panel setting */
   #define CONFIG_PANEL_NAME "asm/arch/panel/default_panel.h"
 #endif
 
 /* enable key burn fnction */
-//#define CONFIG_CMD_KEY_BURNING
+/*#define CONFIG_CMD_KEY_BURNING*/
 
 #define CONFIG_ENV_EXPORT_ADDR 0x10000000
 
