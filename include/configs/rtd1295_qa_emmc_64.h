@@ -71,7 +71,7 @@
 	#undef	CONFIG_ENV_IS_NOWHERE
 	#ifdef CONFIG_SYS_FACTORY
 		#define CONFIG_ENV_IS_IN_FACTORY
-		//#define CONFIG_SYS_FACTORY_READ_ONLY
+		/*#define CONFIG_SYS_FACTORY_READ_ONLY */
 	#endif
 	
 	
@@ -108,7 +108,7 @@
 	#undef  CONFIG_ENV_IS_NOWHERE
 	#define CONFIG_ENV_IS_IN_FACTORY
 	
-	//#define CONFIG_NAND_ON_THE_FLY_TEST_KEY
+	/*#define CONFIG_NAND_ON_THE_FLY_TEST_KEY */
 	
 #else
 	/* Flash writer setting:
@@ -140,8 +140,8 @@
 	#define CONFIG_RTKSPI
 	#define CONFIG_CMD_RTKSPI
 	
-	//#define CONFIG_SYS_RTK_SATA_STORAGE
-	//#define CONFIG_BOOT_FROM_SATA
+	/*#define CONFIG_SYS_RTK_SATA_STORAGE
+	//#define CONFIG_BOOT_FROM_SATA */
 	
 	/* ENV */
 	#undef CONFIG_ENV_SIZE
@@ -150,7 +150,7 @@
 	#undef CONFIG_ENV_IS_NOWHERE
 	#ifdef CONFIG_SYS_FACTORY
 		#define CONFIG_ENV_IS_IN_FACTORY
-		//#define CONFIG_SYS_FACTORY_READ_ONLY
+		/*#define CONFIG_SYS_FACTORY_READ_ONLY */
 	#endif
 #endif
 
@@ -158,8 +158,8 @@
 #define CONFIG_COMPANY_ID 		"0000"
 #define CONFIG_BOARD_ID         "0705"
 #define CONFIG_VERSION          "0000"
-//==========================================================
-/*
+/*==========================================================
+ *
  * SDRAM Memory Map
  * Even though we use two CS all the memory
  * is mapped to one contiguous block
@@ -171,11 +171,11 @@
 #define ARM_ROMCODE_SIZE			(124*1024)
 #define CONFIG_NR_DRAM_BANKS		1
 #define CONFIG_SYS_SDRAM_BASE		0x0
-#define CONFIG_SYS_RAM_DCU1_SIZE	0x40000000	// FIXME
+#define CONFIG_SYS_RAM_DCU1_SIZE	0x40000000	/* FIXME */
 //#define CONFIG_FT_RESCUE
 
 #undef  V_NS16550_CLK
-#define V_NS16550_CLK			27000000	//FIXME
+#define V_NS16550_CLK			27000000	/*FIXME */
 
 
 /* Bootcode Feature: Rescue linux read from USB */
@@ -193,7 +193,7 @@
 #define CONFIG_PARTITION_UUIDS
 #define CONFIG_CMD_EXT4
 
-#define COUNTER_FREQUENCY               27000000 // FIXME, need to know what impact it will cause
+#define COUNTER_FREQUENCY               27000000 /* FIXME, need to know what impact it will cause */
 
 #define CONFIG_VERSION			"0000"
 
