@@ -111,13 +111,13 @@
 #define CONFIG_KERNEL_LOADADDR	0x03000000
 #define CONFIG_ROOTFS_LOADADDR	0x02200000
 #define CONFIG_RESCUE_ROOTFS_LOADADDR 	0x02200000
-#define CONFIG_LOGO_LOADADDR	0x02002000      //reserved ~2M
-#define CONFIG_FDT_LOADADDR	0x02100000      //reserved 64K
+#define CONFIG_LOGO_LOADADDR	0x02002000      /*reserved ~2M*/
+#define CONFIG_FDT_LOADADDR	0x02100000      /*reserved 64K*/
 #define CONFIG_BLUE_LOGO_LOADADDR 0x30000000
 #if 0 /*def CONFIG_NAS_ENABLE*/
-#define CONFIG_FW_LOADADDR	0x01b00000  //reserved 4M BPI kernel 4.4
+#define CONFIG_FW_LOADADDR	0x01b00000  /*reserved 4M BPI kernel 4.4*/
 #else
-#define CONFIG_FW_LOADADDR	0x0f900000  //reserved 4M BPI kernel 4.9 / 4.1
+#define CONFIG_FW_LOADADDR	0x0f900000  /*reserved 4M BPI kernel 4.9 / 4.1*/
 #endif
 
 #define CONFIG_EXTRA_ENV_SETTINGS                   \
@@ -153,8 +153,8 @@
 
 /* Pass open firmware flat tree */
 #define CONFIG_CMD_BOOTI
-#define CONFIG_GZIP_DECOMPRESS_KERNEL_ADDR	0x0c000000	// GZIPED kernel decompress addr
-#define CONFIG_GZIP_KERNEL_MAX_LEN		0x01400000	// Set MAX size to 20M after decompressed
+#define CONFIG_GZIP_DECOMPRESS_KERNEL_ADDR	0x0c000000	/* GZIPED kernel decompress addr*/
+#define CONFIG_GZIP_KERNEL_MAX_LEN		0x01400000	/* Set MAX size to 20M after decompressed*/
 /*
 //#define CONFIG_ARMV8_SWITCH_TO_EL1
 */
@@ -203,7 +203,7 @@
 #define CONFIG_SYS_LOAD_ADDR		0x03000000
 
 /* Use General purpose timer 2 */
-#define CONFIG_SYS_TIMER		0     //FPGA
+#define CONFIG_SYS_TIMER		0     /*FPGA*/
 #define CONFIG_SYS_HZ			1000
 
 /*
@@ -230,8 +230,8 @@
 
 /* GIC-400 setting */
 #define CONFIG_GICV2
-#define GICD_BASE			0xff011000      // FIXME, all these register should be reviewed
-#define GICC_BASE			0xff012000      // FIXME, all these register should be reviewed
+#define GICD_BASE			0xff011000      /* FIXME, all these register should be reviewed*/
+#define GICC_BASE			0xff012000      /* FIXME, all these register should be reviewed*/
 
 
 
@@ -386,12 +386,12 @@
 
 /* Auto detect sink*/
 #define CONFIG_SYS_AUTO_DETECT
-#define CONFIG_HDMITX_MODE				 1 // 0:Always OFF, 1: Always ON, 2: Auto
+#define CONFIG_HDMITX_MODE				 1 /* 0:Always OFF, 1: Always ON, 2: Auto*/
 /* drivers/logo_disp/rtk_rpc.h */
 #ifdef BPI
-#define CONFIG_DEFAULT_TV_SYSTEM    	25 //1080P_60
+#define CONFIG_DEFAULT_TV_SYSTEM    	25 /*1080P_60*/
 #else
-#define CONFIG_DEFAULT_TV_SYSTEM    	13 //720P_60
+#define CONFIG_DEFAULT_TV_SYSTEM    	13 /*720P_60*/
 #endif
 
 /* If partition table */
