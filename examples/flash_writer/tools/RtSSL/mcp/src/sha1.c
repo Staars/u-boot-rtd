@@ -21,8 +21,8 @@ int SHA1_DigestInit(MCP_MD_CTX* ctx)
     if (pSha1)        
     {
         memset(pSha1, 0, sizeof(SHA1_CTX));
-        EVP_MD_CTX_init(&pSha1->Ctx);        
-        EVP_DigestInit(&pSha1->Ctx, EVP_sha1());    
+        EVP_MD_CTX_init(pSha1->Ctx);        
+        EVP_DigestInit(pSha1->Ctx, EVP_sha1());    
         return 0;
     }
                 
@@ -50,7 +50,7 @@ int SHA1_DigestUpdate(
     )
 {
     SHA1_CTX* pSha1 = (SHA1_CTX*) ctx->md_data;
-    EVP_DigestUpdate(&pSha1->Ctx, pData, DataLen);
+    EVP_DigestUpdate(pSha1->Ctx, pData, DataLen);
     return 0;
 }
 
@@ -74,7 +74,7 @@ int SHA1_DigestFinal(
 {        
     SHA1_CTX* pSha1 = (SHA1_CTX*) ctx->md_data;    
     unsigned int HashLen;         
-    EVP_DigestFinal(&pSha1->Ctx, pSha1->Hash, &HashLen);    
+    EVP_DigestFinal(pSha1->Ctx, pSha1->Hash, &HashLen);    
     memcpy(pHash, pSha1->Hash , HashLen);    
     return 0;
 }
@@ -116,7 +116,7 @@ int SHA1_DigestPeek(
 int SHA1_DigestCleanup(MCP_MD_CTX* ctx)
 {   
     SHA1_CTX* pSha1 = (SHA1_CTX*) ctx->md_data;                
-    EVP_MD_CTX_cleanup(&pSha1->Ctx);
+    EVP_MD_CTX_free(pSha1->Ctx);
     return 0;
 }
 
@@ -191,18 +191,18 @@ int MARS_SHA1_DigestUpdate(
     
     unsigned int  HashLen;                 
         
-    EVP_DigestUpdate(&pSha1->Ctx, pData, DataLen);        
+    EVP_DigestUpdate(pSha1->Ctx, pData, DataLen);        
                             
-    EVP_DigestFinal(&pSha1->Ctx, pSha1->Hash, &HashLen);
+    EVP_DigestFinal(pSha1->Ctx, pSha1->Hash, &HashLen);
         
     //_dump_data(pSha1->Hash, HashLen);        
 
     // restart        
-    EVP_MD_CTX_cleanup(&pSha1->Ctx); 
+    EVP_MD_CTX_free(pSha1->Ctx); 
     
-    EVP_DigestInit(&pSha1->Ctx, EVP_sha1());                // restart 
+    EVP_DigestInit(pSha1->Ctx, EVP_sha1());                // restart 
     
-    EVP_DigestUpdate(&pSha1->Ctx, pSha1->Hash, HashLen);    // feed in the hash value       
+    EVP_DigestUpdate(pSha1->Ctx, pSha1->Hash, HashLen);    // feed in the hash value       
           
     return 0;
 }

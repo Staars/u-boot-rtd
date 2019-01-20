@@ -121,6 +121,12 @@ int RCIC_DigestUpdate(
  *         
  * Retn : N/A
  *------------------------------------------------------------------*/
+int RCIC_DigestPeek(
+    MCP_MD_CTX*             ctx,
+    unsigned char*          pHash
+    ); 
+
+
 int RCIC_DigestFinal(
     MCP_MD_CTX*             ctx,
     unsigned char*          pHash

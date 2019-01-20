@@ -4,7 +4,7 @@
 #include "mcp.h"
 
 typedef struct {
-    EVP_MD_CTX      Ctx;    
+    EVP_MD_CTX      *Ctx;    
     unsigned char   Hash[32];
 }SHA256_CTX;
 

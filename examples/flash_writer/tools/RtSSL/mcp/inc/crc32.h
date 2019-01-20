@@ -4,7 +4,7 @@
 #include "mcp.h"
 
 typedef struct {
-    EVP_MD_CTX      Ctx;    
+    	EVP_MD_CTX      *Ctx;    
 	unsigned long   key;	        // really 33-bit key, counting implicit 1 top-bit
 	unsigned long   crchighbit;
 	unsigned long   val;	

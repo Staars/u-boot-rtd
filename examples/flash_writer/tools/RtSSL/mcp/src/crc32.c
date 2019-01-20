@@ -97,6 +97,12 @@ int CRC32_DigestUpdate(
  *         
  * Retn : N/A
  *------------------------------------------------------------------*/
+int CRC32_DigestPeek(
+    MCP_MD_CTX*             ctx,
+    unsigned char*          pHash
+    );
+
+
 int CRC32_DigestFinal(
     MCP_MD_CTX*             ctx,
     unsigned char*          pHash

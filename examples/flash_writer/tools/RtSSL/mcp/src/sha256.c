@@ -21,8 +21,8 @@ int SHA256_DigestInit(MCP_MD_CTX* ctx)
     if (pSHA256)        
     {
         memset(pSHA256, 0, sizeof(SHA256_CTX));
-        EVP_MD_CTX_init(&pSHA256->Ctx);
-        EVP_DigestInit(&pSHA256->Ctx, EVP_sha256());
+        EVP_MD_CTX_init(pSHA256->Ctx);
+        EVP_DigestInit(pSHA256->Ctx, EVP_sha256());
         return 0;
     }
                 
@@ -49,7 +49,7 @@ int SHA256_DigestUpdate(
     )
 {
     SHA256_CTX* pSHA256 = (SHA256_CTX*) ctx->md_data;
-    EVP_DigestUpdate(&pSHA256->Ctx, pData, DataLen);
+    EVP_DigestUpdate(pSHA256->Ctx, pData, DataLen);
     return 0;
 }
 
@@ -72,7 +72,7 @@ int SHA256_DigestFinal(
 {        
     SHA256_CTX* pSHA256 = (SHA256_CTX*) ctx->md_data;    
     unsigned int HashLen;         
-    EVP_DigestFinal(&pSHA256->Ctx, pSHA256->Hash, &HashLen);    
+    EVP_DigestFinal(pSHA256->Ctx, pSHA256->Hash, &HashLen);    
     memcpy(pHash, pSHA256->Hash , HashLen);    
     return 0;
 }
@@ -114,7 +114,7 @@ int SHA256_DigestPeek(
 int SHA256_DigestCleanup(MCP_MD_CTX* ctx)
 {   
     SHA256_CTX* pSHA256 = (SHA256_CTX*) ctx->md_data;                
-    EVP_MD_CTX_cleanup(&pSHA256->Ctx);
+    EVP_MD_CTX_free(pSHA256->Ctx);
     return 0;
 }
 

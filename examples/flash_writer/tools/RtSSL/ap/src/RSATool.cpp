@@ -420,13 +420,19 @@ void PrintRSAKey(RSA *rsa, unsigned char inf, char* outfile)
 	    RSA_print(out, rsa, 0);	
 	    break;
     case RSA_KEY_INFO_N:
-        BN_print(out,rsa->n);
+	const BIGNUM *n;
+	RSA_get0_key(rsa, &n, NULL, NULL);
+        BN_print(out,n);
         break;
     case RSA_KEY_INFO_E:
-        BN_print(out,rsa->e);
+        const BIGNUM *e;
+        RSA_get0_key(rsa, NULL, &e, NULL);
+        BN_print(out,e);
         break;
     case RSA_KEY_INFO_D:
-        BN_print(out,rsa->d);
+        const BIGNUM *d;
+        RSA_get0_key(rsa, NULL, NULL, &d);
+        BN_print(out,d);
         break;
     }	   
     BIO_printf(out,"\n"); 

@@ -83,23 +83,23 @@ int AES_CBC_FileEncryption(
     int             DataLen;
     int             ShortBlock;   
     int             outl;                                              
-    EVP_CIPHER_CTX  ctx;                
+    EVP_CIPHER_CTX  *ctx;                
         
     //---------------------------------------                    
     // Init Ciphe 
     //---------------------------------------
     if (algo == CIPHER_ALGO_AES_128_CBC)
     {
-    	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_128_cbc(), EnDe, Key, IV)<0)
+    	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_128_cbc(), EnDe, Key, IV)<0)
 		return -1;
     }
     else if (algo == CIPHER_ALGO_AES_256_CBC)
     {    
-	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_256_cbc(), EnDe, Key, IV)<0)
+	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_256_cbc(), EnDe, Key, IV)<0)
         	return -1;         
     }           
     
-    BlockSize = EVP_CIPHER_CTX_block_size(&ctx);
+    BlockSize = EVP_CIPHER_CTX_block_size(ctx);
     BuffLen   = ((sizeof(Buff) / BlockSize)-1) * BlockSize;   // guaranteed that the data buffer is block alignment and reserve the last block as the sn1                     
     pSn1      = &BuffOut[BuffLen];
     memcpy(pSn1, IV, BlockSize);                              // set pSn1 as default value    
@@ -138,7 +138,7 @@ int AES_CBC_FileEncryption(
         {                                      
             if (EnDe)
             {                
-                if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pIn, DataLen))
+                if (!EVP_EncryptUpdate(ctx, pOut, &outl, pIn, DataLen))
                     goto err_decrypt_fail;
                          
                 pIn  += DataLen; 
@@ -148,7 +148,7 @@ int AES_CBC_FileEncryption(
             }
             else
             {
-                if (!EVP_DecryptUpdate(&ctx, pOut, &outl, pIn, DataLen))
+                if (!EVP_DecryptUpdate(ctx, pOut, &outl, pIn, DataLen))
                     goto err_decrypt_fail;
                          
                 pIn  += DataLen; 
@@ -162,16 +162,16 @@ int AES_CBC_FileEncryption(
         {                                   
     	    if (algo == CIPHER_ALGO_AES_128_CBC)
     	    {
-            	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_128_ecb(), 1, Key, 0)<0)
+            	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_128_ecb(), 1, Key, 0)<0)
                 	goto err_decrypt_fail;                                                        
 	    }
     	    else if (algo == CIPHER_ALGO_AES_256_CBC)
     	    {
-            	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_256_ecb(), 1, Key, 0)<0)
+            	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_256_ecb(), 1, Key, 0)<0)
                 	goto err_decrypt_fail;                                                        
 	    }
             
-            if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pSn1, (DataLen) ? (DataLen - ShortBlock) : BlockSize)) // encrypt the last cypher text
+            if (!EVP_EncryptUpdate(ctx, pOut, &outl, pSn1, (DataLen) ? (DataLen - ShortBlock) : BlockSize)) // encrypt the last cypher text
                 goto err_decrypt_fail;
             
             for (int i=0; i<ShortBlock; i++)
@@ -192,7 +192,7 @@ end_proc:
     if (ret==0)        
         rename(".tmp", FileOut);    
     
-    EVP_CIPHER_CTX_cleanup(&ctx); 
+    EVP_CIPHER_CTX_free(ctx); 
           
     return ret;     
     
@@ -251,7 +251,7 @@ int AES_ECB_FileEncryption(
     int             outl;        
     int             flen;       
     int	            sig_len=0;                               
-    EVP_CIPHER_CTX  ctx;                
+    EVP_CIPHER_CTX  *ctx;                
         
     //---------------------------------------                    
     // Init Ciphe 
@@ -259,17 +259,17 @@ int AES_ECB_FileEncryption(
     if (algo == CIPHER_ALGO_AES_128_ECB)
     {
 	sig_len=16;
-    	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_128_ecb(), EnDe, Key, NULL)<0)
+    	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_128_ecb(), EnDe, Key, NULL)<0)
         	return -1;        
     }            
     else if (algo == CIPHER_ALGO_AES_256_ECB)
     {
 	sig_len=32;
-    	if (EVP_CIPHER_CTX_init_no_padding(&ctx, EVP_aes_256_ecb(), EnDe, Key, NULL)<0)
+    	if (EVP_CIPHER_CTX_init_no_padding(ctx, EVP_aes_256_ecb(), EnDe, Key, NULL)<0)
         	return -1;        
     }            
     
-    BlockSize = EVP_CIPHER_CTX_block_size(&ctx);
+    BlockSize = EVP_CIPHER_CTX_block_size(ctx);
     BuffLen   = ((sizeof(Buff) / BlockSize)-1) * BlockSize;   // guaranteed that the data buffer is block alignment and reserve the last block as the sn1                     
     pSn1      = &BuffOut[BuffLen];    
     
@@ -321,20 +321,21 @@ int AES_ECB_FileEncryption(
             {                
                 if (ShortBlock==0)
                 {
-                    if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pIn, DataLen))
+                    if (!EVP_EncryptUpdate(ctx, pOut, &outl, pIn, DataLen))
                         goto err_decrypt_fail;
                 }                 
                 else
                 {
+
                     // encrypt last n-2 blocks
-                    if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pIn, DataLen - BlockSize))
+                    if (!EVP_EncryptUpdate(ctx, pOut, &outl, pIn, DataLen - BlockSize))
                         goto err_decrypt_fail;
                         
                     // encrypt last terminated block
                     pIn  += DataLen - BlockSize + ShortBlock;
                     pOut += DataLen - BlockSize + ShortBlock;                                 
     
-                    if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pIn, BlockSize))
+                    if (!EVP_EncryptUpdate(ctx, pOut, &outl, pIn, BlockSize))
                         goto err_encrypt_fail;
                     
                     memcpy(pIn, pOut, BlockSize);
@@ -343,7 +344,7 @@ int AES_ECB_FileEncryption(
                     pIn  -= ShortBlock;            
                     pOut -= ShortBlock;
 
-                    if (!EVP_EncryptUpdate(&ctx, pOut, &outl, pIn, BlockSize))
+                    if (!EVP_EncryptUpdate(ctx, pOut, &outl, pIn, BlockSize))
                         goto err_encrypt_fail;                                 
                 }                            
             }
@@ -351,13 +352,13 @@ int AES_ECB_FileEncryption(
             {
                 if (ShortBlock==0)
                 {
-                    if (!EVP_DecryptUpdate(&ctx, pOut, &outl, pIn, DataLen))
+                    if (!EVP_DecryptUpdate(ctx, pOut, &outl, pIn, DataLen))
                         goto err_decrypt_fail;                                                                                                              
                 }                 
                 else
                 {
                     // decrypt last n-1 blocks
-                    if (!EVP_DecryptUpdate(&ctx, pOut, &outl, pIn, DataLen))
+                    if (!EVP_DecryptUpdate(ctx, pOut, &outl, pIn, DataLen))
                         goto err_decrypt_fail;
                 
                     pIn  += DataLen; 
@@ -369,7 +370,7 @@ int AES_ECB_FileEncryption(
                     pIn  -= (BlockSize - ShortBlock);
                     pOut -= (BlockSize - ShortBlock);
                                                                         
-                    if (!EVP_DecryptUpdate(&ctx, pOut, &outl, pIn, BlockSize))
+                    if (!EVP_DecryptUpdate(ctx, pOut, &outl, pIn, BlockSize))
                         goto err_decrypt_fail;                                                       
                 }                                    
             }    
@@ -393,7 +394,7 @@ end_proc:
     if (ret==0)        
         rename(".tmp", FileOut);    
     
-    EVP_CIPHER_CTX_cleanup(&ctx); 
+    EVP_CIPHER_CTX_free(ctx); 
           
     return ret;     
     

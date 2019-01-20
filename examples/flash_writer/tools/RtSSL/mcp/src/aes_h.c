@@ -70,7 +70,7 @@ int _Do_AES_H_Hash(
     unsigned long           DataLen
     )
 {       
-    EVP_CIPHER_CTX ctx;
+    EVP_CIPHER_CTX* ctx;
     unsigned char  HashOut[16];
     unsigned long* plHash = (unsigned long*) Hash;     
     unsigned long* plHashOut = (unsigned long*) HashOut;
@@ -87,16 +87,16 @@ int _Do_AES_H_Hash(
     {                                              
         //printf("\n\n>>>>>>>>>>>>>>Iteration %d <<<<<<<<<<<<<<<\n\n", i++);
 
-        EVP_CIPHER_CTX_init(&ctx); 
+        EVP_CIPHER_CTX_init(ctx); 
            
         //dump_mem_with_text("Xi ", pData, 16);        
         
-        if (!EVP_EncryptInit(&ctx, EVP_aes_128_ecb(), pData, NULL))
+        if (!EVP_EncryptInit(ctx, EVP_aes_128_ecb(), pData, NULL))
             return -1;                
                 
         //dump_mem_with_text("Hi-1 ", Hash, 16);                
         
-        if (!EVP_EncryptUpdate(&ctx, HashOut, &Outl, Hash, 16))       // compute hash value
+        if (!EVP_EncryptUpdate(ctx, HashOut, &Outl, Hash, 16))       // compute hash value
             return -1;   
         
            
@@ -111,9 +111,9 @@ int _Do_AES_H_Hash(
         pData   += 16;
         DataLen -= 16;    
         
-        EVP_EncryptFinal(&ctx, HashOut, &Outl);               
+        EVP_EncryptFinal(ctx, HashOut, &Outl);               
         
-        EVP_CIPHER_CTX_cleanup(&ctx); 
+        EVP_CIPHER_CTX_cleanup(ctx); 
     }            
     
     return 0;                    
